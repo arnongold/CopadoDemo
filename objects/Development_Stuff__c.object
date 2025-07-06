@@ -153,13 +153,6 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <fields>
-        <fullName>sequence__c</fullName>
-        <externalId>false</externalId>
-        <label>sequence</label>
-        <trackTrending>false</trackTrending>
-        <type>AutoNumber</type>
-    </fields>
     <label>Development Stuff</label>
     <nameField>
         <label>Development Stuff Name</label>
@@ -169,4 +162,11 @@
     <searchLayouts/>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
+    <fields>
+        <fullName>sequence__c</fullName>
+        <externalId>false</externalId>
+        <label>sequence</label>
+        <trackTrending>false</trackTrending>
+        <type>AutoNumber</type>
+    </fields>
 </CustomObject>
