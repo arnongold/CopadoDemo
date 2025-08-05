@@ -25,6 +25,10 @@
     <name>AssignmentRules</name>
   </types>
   <types>
+    <members>Demo_Object__c</members>
+    <name>CustomObject</name>
+  </types>
+  <types>
     <members>*</members>
     <name>CustomLabels</name>
   </types>
@@ -87,6 +91,10 @@
   <types>
     <members>*</members>
     <name>StaticResource</name>
+  </types>
+  <types>
+    <members>Contact.First_Name_Length_Validation</members>
+    <name>ValidationRule</name>
   </types>
   <types>
     <members>*</members>
