@@ -73,6 +73,10 @@
     <name>HomePageLayout</name>
   </types>
   <types>
+    <members>Contact-Contact Layout</members>
+    <name>Layout</name>
+  </types>
+  <types>
     <members>*</members>
     <name>Prompt</name>
   </types>
