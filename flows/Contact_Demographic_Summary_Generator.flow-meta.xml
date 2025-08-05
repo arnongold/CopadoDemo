@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <description>Automatically generates demographic summaries for contacts using available contact information</description>
+    <environments>Default</environments>
+    <interviewLabel>Contact Demographic Summary Generator {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contact Demographic Summary Generator</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <decisions>
+        <name>Should_Generate_Summary</name>
+        <label>Should Generate Summary</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <defaultConnectorLabel>Skip Summary Generation</defaultConnectorLabel>
+        <rules>
+            <name>Has_Required_Data</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.FirstName</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.LastName</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Generate_Demographic_Summary</targetReference>
+            </connector>
+            <label>Has Required Data</label>
+        </rules>
+    </decisions>
+    <recordUpdates>
+        <name>Generate_Demographic_Summary</name>
+        <label>Generate Demographic Summary</label>
+        <locationX>44</locationX>
+        <locationY>242</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Demographic_Summary__c</field>
+            <value>
+                <elementReference>DemographicSummaryText</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Contact</object>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Should_Generate_Summary</targetReference>
+        </connector>
+        <object>Contact</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <textTemplates>
+        <name>DemographicSummaryText</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>DEMOGRAPHIC SUMMARY - {!$Record.FirstName} {!$Record.LastName}
+
+Professional Profile:
+{!$Record.FirstName} {!$Record.LastName} serves as {!$Record.Title} at {!$Record.Account.Name}. This contact represents a valuable business relationship opportunity with professional credentials in their field.
+
+Geographic Information:
+Based in {!$Record.MailingCity}, {!$Record.MailingState}, {!$Record.MailingCountry}. Primary contact available via email: {!$Record.Email} and phone: {!$Record.Phone}.
+
+Lead Profile:
+Originally acquired through {!$Record.LeadSource} channel. Operating in the {!$Record.Account.Industry} industry sector. This demographic profile indicates strong potential for business engagement and relationship development.
+
+Generated: {!NOW()}</text>
+    </textTemplates>
+    <status>Active</status>
+</Flow>

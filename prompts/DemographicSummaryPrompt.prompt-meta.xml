@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Contact Demographic Summary</masterLabel>
+    <description>Generate a comprehensive demographic summary for a contact using available contact information</description>
+    <promptVersions>
+        <promptVersion>
+            <number>1</number>
+            <status>Published</status>
+            <promptText>You are an AI assistant tasked with creating a comprehensive demographic summary for a contact. Based on the provided contact information, generate a professional and informative summary that includes relevant demographic details.
+
+Please analyze the following contact information and create a summary that includes:
+- Personal information (name, title, demographics)
+- Professional details (title, company, industry)
+- Contact preferences and characteristics
+- Geographic information if available
+- Any other relevant demographic insights
+
+Contact Information:
+- Name: {!Contact.FirstName} {!Contact.LastName}
+- Title: {!Contact.Title}
+- Account: {!Contact.Account.Name}
+- Email: {!Contact.Email}
+- Phone: {!Contact.Phone}
+- Mailing Address: {!Contact.MailingStreet}, {!Contact.MailingCity}, {!Contact.MailingState} {!Contact.MailingPostalCode}, {!Contact.MailingCountry}
+- Department: {!Contact.Department}
+- Lead Source: {!Contact.LeadSource}
+- Birthdate: {!Contact.Birthdate}
+
+Generate a concise but comprehensive demographic summary in 2-3 paragraphs that would be useful for sales, marketing, and customer service teams. Focus on factual information and avoid assumptions. If certain information is not provided, do not include it in the summary.</promptText>
+        </promptVersion>
+    </promptVersions>
+    <templateDataProviders>
+        <templateDataProvider>
+            <name>Contact</name>
+            <objectApiName>Contact</objectApiName>
+        </templateDataProvider>
+    </templateDataProviders>
+    <type>einstein_gpt__fieldGeneration</type>
+    <visibility>Global</visibility>
+</Prompt>

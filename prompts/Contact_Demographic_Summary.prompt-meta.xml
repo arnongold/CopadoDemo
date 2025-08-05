@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Prompt xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Contact Demographic Summary</masterLabel>
+    <description>AI-powered prompt to generate comprehensive demographic summaries for contacts</description>
+    <promptVersions>
+        <promptVersion>
+            <number>1</number>
+            <status>Published</status>
+            <promptText>Generate a professional demographic summary for this contact based on the available information. Create a 2-3 paragraph summary suitable for sales, marketing, and customer service teams.
+
+Contact Details:
+Name: {!$Input:Contact.FirstName} {!$Input:Contact.LastName}
+Title: {!$Input:Contact.Title}
+Company: {!$Input:Contact.Account.Name}
+Email: {!$Input:Contact.Email}
+Phone: {!$Input:Contact.Phone}
+Location: {!$Input:Contact.MailingCity}, {!$Input:Contact.MailingState}, {!$Input:Contact.MailingCountry}
+Department: {!$Input:Contact.Department}
+Lead Source: {!$Input:Contact.LeadSource}
+
+Instructions:
+- Focus on professional and demographic characteristics
+- Include geographic and industry context
+- Provide insights useful for business engagement
+- Use only factual information provided
+- Maintain professional tone throughout
+- Structure as 2-3 coherent paragraphs</promptText>
+        </promptVersion>
+    </promptVersions>
+    <templateDataProviders>
+        <templateDataProvider>
+            <name>Contact</name>
+            <objectApiName>Contact</objectApiName>
+        </templateDataProvider>
+    </templateDataProviders>
+    <type>einstein_gpt__fieldGeneration</type>
+    <visibility>Global</visibility>
+</Prompt>
